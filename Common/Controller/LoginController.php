@@ -84,17 +84,38 @@ else
         $_SESSION["user"] = $result;
 
 
-        header("Location: ../View/dashboard.php");
 
-    }
+        if($result["role"] == "admin")
+        {
 
-    else
-    {
+            header("Location: ../../Admin/View/dashboard.php");
 
-        $_SESSION["usernameError"] = "Invalid username or password";
+        }
 
 
-        header("Location: ../View/login.php");
+        else if($result["role"] == "manager")
+        {
+
+            header("Location: ../../Manager/Mview/dashboard.php");
+
+        }
+
+
+        else if($result["role"] == "team_leader")
+        {
+
+            header("Location: ../../Team_Leader/View/dashboard.php");
+
+        }
+
+
+        else if($result["role"] == "employee")
+        {
+
+            header("Location: ../../Employee/View/dashboard.php");
+
+        }
+
 
     }
 
