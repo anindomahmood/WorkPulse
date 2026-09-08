@@ -29,28 +29,45 @@ class User
 
 
     function login($conn, $username, $password)
-{
+    {
 
-    $sql = "SELECT * FROM users 
-            WHERE username = ?
-            AND password = ?";
-
-
-    $stmt = $conn->prepare($sql);
+        $sql = "SELECT * FROM users 
+                WHERE username = ?
+                AND password = ?";
 
 
-    $stmt->execute([
-        $username,
-        $password
-    ]);
+        $stmt = $conn->prepare($sql);
 
 
-    $user = $stmt->fetch();
+        $stmt->execute([
+            $username,
+            $password
+        ]);
 
 
-    return $user;
+        $user = $stmt->fetch();
 
-}
+
+        return $user;
+
+    }
+
+    function checkExistingUserByUsername($conn, $username)
+    {
+
+        $sql = "SELECT * FROM users WHERE username=?";
+
+
+        $stmt = $conn->prepare($sql);
+
+
+        $stmt->execute([$username]);
+
+        $result = $stmt->fetch();
+
+        return $result;
+
+    }
 
 
 }

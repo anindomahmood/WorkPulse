@@ -7,11 +7,15 @@ function validateRegistration()
     let role = document.getElementById("role").value;
 
 
-    if(fullName == "")
+    if(!fullName)
     {
-        alert("Full Name is required");
+       document.getElementById("fullnameError").innerHTML = "Full Name is required";
         return false;
     }
+    else
+        {
+            document.getElementById("fullnameError").innerHTML = "";
+        }
 
 
     let namePattern = /^[a-zA-Z ]+$/;
@@ -19,41 +23,63 @@ function validateRegistration()
 
     if(!namePattern.test(fullName))
     {
-        alert("Full Name cannot contain numbers or special characters");
+    
+        document.getElementById("fullnameError").innerHTML = "Full Name cannot contain numbers or special characters";
         return false;
     }
+    else
+        {
+            document.getElementById("fullnameError").innerHTML = "";
+        }
 
 
-
-    if(username == "")
+    if(!username)
     {
-        alert("Username is required");
+        document.getElementById("usernameError").innerHTML = "Username is required";
         return false;
     }
+    else
+        {
+            document.getElementById("usernameError").innerHTML = "";
+        }
 
 
 
-    if(password == "")
+    if(!password)
     {
-        alert("Password is required");
+        
+        document.getElementById("passwordError").innerHTML ="Password is required";
         return false;
     }
+    else
+        {
+            document.getElementById("passwordError").innerHTML ="";
+        }
 
 
 
     if(password.length < 4)
     {
-        alert("Password must be at least 4 characters");
+       
+        document.getElementById("passwordError").innerHTML = "Password must be at least 4 characters";
         return false;
     }
+    else
+        {
+            document.getElementById("passwordError").innerHTML = "";
+        }
 
 
 
     if(role == "")
     {
-        alert("Please select a role");
+         document.getElementById("roleError").innerHTML = "Please select a role";
         return false;
     }
+    else
+        {
+            document.getElementById("roleError").innerHTML = "";
+        }
 
 
 

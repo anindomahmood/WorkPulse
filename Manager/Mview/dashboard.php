@@ -2,259 +2,162 @@
 
 session_start();
 
-$username = $_SESSION["user"]["username"] ?? "";
+$username = $_SESSION["loggedInUsername"] ?? "";
+$isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
+
+if(!$isLoggedIn)
+{
+    header("Location: ../../Common/View/login.php");
+    exit;
+}
+
+$isSetCookie = isset($_COOKIE["username"]);
+
+$usernameFromCookie = $_COOKIE["username"] ?? "";
+
 
 ?>
 
 
-<html>
+    <html>
 
-<body>
+        <body>
 
 
-<div class="dashboard-container">
+            <div class="dashboard-container">
 
+                <header class="top-header">
 
+                    <div class="logo-section">
 
-<header class="top-header">
+                        <img src="" class="logo-image"/>
 
+                        <h2>WorkPulse</h2>
 
-<div class="logo-section">
+                    </div>
 
-<img src="" class="logo-image"/>
+                    <div class="notification-section">
 
-<h2>
-WorkPulse
-</h2>
+                        <a href="">Notification</a>
 
+                    </div>
 
-</div>
+                </header>
 
+                <div class="sidebar">
 
 
-<div class="notification-section">
+                    <div class="profile-section">
 
-<a href="">
-Notification
-</a>
 
-</div>
+                        <img src="" class="profile-image"/>
 
+                        <p>@<?php echo $usernameFromCookie;?></p>
 
 
-</header>
+                    </div>
 
+                    <ul>
 
+                        <li>
+                            <a href="">Dashboard</a>
+                        </li>
 
+                        <li>
+                            <a href="../Mcontroller/TaskController.php?action=create">Create Task</a>
+                        </li>
 
-<div class="sidebar">
+                        <li>
+                            <a href="../Mcontroller/TaskController.php?action=list">All Tasks</a>
+                        </li>
 
+                        <li>
+                            <a href="">Logout</a>
+                        </li>
 
-<div class="profile-section">
+                    </ul>
 
+                </div>
 
-<img src="" class="profile-image"/>
+                <div class="main-content">
 
 
-<p>
-@<?php echo $username;?>
-</p>
+                    <div class="card-container">
 
+                        <div class="dashboard-card">
 
-</div>
+                            <h3>Total Employees</h3>
 
+                            <p>0</p>
 
+                        </div>
 
-<ul>
+                        <div class="dashboard-card">
 
-<li>
-<a href="">
-Dashboard
-</a>
-</li>
+                            <h3>All Tasks</h3>
 
+                            <p>0</p>
 
-<li>
-<a href="../Mcontroller/TaskController.php?action=create">
-Create Task
-</a>
-</li>
+                        </div>
 
+                        <div class="dashboard-card">
 
-<li>
-<a href="../Mcontroller/TaskController.php?action=list">
-All Tasks
-</a>
-</li>
+                            <h3>Overdue Tasks</h3>
+                            <p>0</p>
 
+                        </div>
 
-<li>
-<a href="">
-Logout
-</a>
-</li>
+                        <div class="dashboard-card">
 
+                            <h3>No Deadline</h3>
 
-</ul>
+                            <p>0</p>
 
+                        </div>
 
-</div>
+                        <div class="dashboard-card">
 
+                            <h3>Due Today</h3>
+                            <p>0</p>
+                        </div>
 
+                        <div class="dashboard-card">
 
+                            <h3>Notifications</h3>
+                            <p>0</p>
 
-<div class="main-content">
+                        </div>
 
+                        <div class="dashboard-card">
 
-<div class="card-container">
+                            <h3> Pending</h3>
 
+                            <p>0</p>
+                        </div>
 
+                        <div class="dashboard-card">
 
-<div class="dashboard-card">
+                            <h3>In Progress</h3>
 
-<h3>
-Total Employees
-</h3>
+                            <p>0</p>
 
-<p>
-0
-</p>
+                        </div>
 
-</div>
+                        <div class="dashboard-card">
 
+                        <h3>Completed</h3>
 
+                        <p>0</p>
 
+                        </div>
 
-<div class="dashboard-card">
+                    </div>
 
-<h3>
-All Tasks
-</h3>
+                </div>
 
-<p>
-0
-</p>
+            </div>
 
-</div>
 
+        </body>
 
-
-
-<div class="dashboard-card">
-
-<h3>
-Overdue Tasks
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-No Deadline
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-Due Today
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-Notifications
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-Pending
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-In Progress
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-<div class="dashboard-card">
-
-<h3>
-Completed
-</h3>
-
-<p>
-0
-</p>
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-</body>
-
-</html>
+    </html>

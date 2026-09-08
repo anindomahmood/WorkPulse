@@ -11,7 +11,7 @@ include "../Model/User.php";
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-
+$_SESSION["username"] = $username;
 
 // remove extra spaces and unwanted characters
 
@@ -70,18 +70,27 @@ else
     $user = new User();
 
 
-    $result = $user->login(
-        $conn,
-        $username,
-        $password
-    );
+
+    $result = $user->login( $conn,$username,$password);
 
 
 
     if($result)
     {
 
+
+        setcookie("username",$username,time() + 3600,"/");
+
+
+        $_SESSION["loggedInUsername"] = $result["username"];
+
+
+        $_SESSION["isLoggedIn"] = true;
+
+
+
         $_SESSION["user"] = $result;
+
 
 
 
@@ -116,6 +125,16 @@ else
 
         }
 
+
+    }
+
+    else
+    {
+
+        $_SESSION["usernameError"] = "Invalid username or password";
+
+
+        header("Location: ../View/login.php");
 
     }
 

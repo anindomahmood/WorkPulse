@@ -26,203 +26,207 @@ unset($_SESSION["role"]);
 
 <html>
 
-<head>
-    <title>Registration</title>
-</head>
+    <head>
+        <title>Registration</title>
+         <script src="../Controller/checkUsername.js"></script>
+         <script src="reg.js"></script>
+
+    </head>
 
 
-<body>
+    <body>
 
 
-    <form 
-        id="registrationForm"
-        action="../Controller/RegistrationController.php"
-        method="post"
-        onsubmit="return validateRegistration()"
-    >
+        <form 
+            id="registrationForm"
+            action="../Controller/RegistrationController.php"
+            method="post"
+            onsubmit="return validateRegistration()"
+        >
 
-        <fieldset>
+            <fieldset>
 
-            <legend>Registration</legend>
-
-
-            <table class="registration-table">
+                <legend>Registration</legend>
 
 
-                <tr>
-                    <td>Full Name</td>
-
-                    <td>
-                        <input 
-                            type="text"
-                            id="full_name"
-                            name="full_name"
-                            class="form-input"
-                            value="<?php echo $fullNameValue; ?>"
-                        >
-                    </td>
-
-                    <td>
-                        <p class="error">
-                            <?php echo $fullNameError; ?>
-                        </p>
-                    </td>
-
-                </tr>
+                <table class="registration-table">
 
 
+                    <tr>
+                        <td>Full Name</td>
 
-                <tr>
+                        <td>
+                            <input 
+                                type="text"
+                                id="full_name"
+                                name="full_name"
+                                class="form-input"
+                                value="<?php echo $fullNameValue; ?>"
+                            />
+                        </td>
 
-                    <td>Username</td>
+                        <td>
+                            <p class="error">
+                                <?php echo $fullNameError; ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="error" id="fullnameError"></p>
+                        </td>
 
-                    <td>
-                        <input 
-                            type="text"
-                            id="username"
-                            name="username"
-                            class="form-input"
-                            value="<?php echo $usernameValue; ?>"
-                        >
-                    </td>
-
-
-                    <td>
-                        <p class="error">
-                            <?php echo $usernameError; ?>
-                        </p>
-                    </td>
-
-                </tr>
+                    </tr>
 
 
 
+                    <tr>
 
-                <tr>
+                        <td>Username</td>
 
-                    <td>Password</td>
+                        <td>
+                            <input 
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="form-input"
+                                value="<?php echo $usernameValue; ?>"
+                                 onkeyup="checkUsername()"
+                            />
+                        </td>
 
-                    <td>
-                        <input 
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="form-input"
-                        >
-                    </td>
 
+                        <td>
+                            <p class="error">
+                                <?php echo $usernameError; ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="error" id="usernameError"></p>
+                        </td>
+                        <td>
+                            <p class="error" id="response"></p>
+                        </td>
 
-                    <td>
-                        <p class="error">
-                            <?php echo $passwordError; ?>
-                        </p>
-                    </td>
-
-                </tr>
+                    </tr>
 
 
 
 
-                <tr>
+                    <tr>
 
-                    <td>Role</td>
+                        <td>Password</td>
 
-                    <td>
-
-                        <select 
-                            id="role"
-                            name="role"
-                            class="form-input"
-                        >
-
-                            <option value="">
-                                Select Role
-                            </option>
+                        <td>
+                            <input 
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-input"
+                            />
+                        </td>
 
 
-                            <option value="manager"
-                            <?php 
-                            if($roleValue=="manager")
-                            {
-                                echo "selected";
-                            }
-                            ?>
+                        <td>
+                            <p class="error">
+                                <?php echo $passwordError; ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="error" id="passwordError"> </p>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Role</td>
+
+                        <td>
+
+                            <select 
+                                id="role"
+                                name="role"
+                                class="form-input"
                             >
-                                Manager
-                            </option>
+
+                                <option value="">
+                                    Select Role
+                                </option>
 
 
-                            <option value="team_leader"
-                            <?php 
-                            if($roleValue=="team_leader")
-                            {
-                                echo "selected";
-                            }
-                            ?>
+                                <option value="manager"
+                                <?php 
+                                if($roleValue=="manager")
+                                {
+                                    echo "selected";
+                                }
+                                ?>
+                                >
+                                    Manager
+                                </option>
+
+
+                                <option value="team_leader"
+                                <?php 
+                                if($roleValue=="team_leader")
+                                {
+                                    echo "selected";
+                                }
+                                ?>
+                                >
+                                    Team Leader
+                                </option>
+
+
+
+                                <option value="employee"
+                                <?php 
+                                if($roleValue=="employee")
+                                {
+                                    echo "selected";
+                                }
+                                ?>
+                                >
+                                    Employee
+                                </option>
+
+
+                            </select>
+
+                        </td>
+
+                        <td>
+                            <p class="error">
+                                <?php echo $roleError; ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="error" id="roleError"> </p>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td></td>
+
+                        <td>
+                            <input 
+                                type="submit"
+                                value="Register"
+                                class="submit-button"
                             >
-                                Team Leader
-                            </option>
+                        </td>
+
+                    </tr>
 
 
+                </table>
 
-                            <option value="employee"
-                            <?php 
-                            if($roleValue=="employee")
-                            {
-                                echo "selected";
-                            }
-                            ?>
-                            >
-                                Employee
-                            </option>
+            </fieldset>
 
+        </form>
 
-                        </select>
-
-                    </td>
-
-
-                    <td>
-                        <p class="error">
-                            <?php echo $roleError; ?>
-                        </p>
-                    </td>
-
-
-                </tr>
-
-
-
-
-                <tr>
-
-                    <td></td>
-
-                    <td>
-                        <input 
-                            type="submit"
-                            value="Register"
-                            class="submit-button"
-                        >
-                    </td>
-
-                </tr>
-
-
-            </table>
-
-
-        </fieldset>
-
-
-    </form>
-
-
-
-<script src="reg.js"></script>
-
-
-</body>
+    </body>
 
 
 </html>
