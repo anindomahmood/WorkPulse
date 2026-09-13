@@ -13,7 +13,7 @@ $role = $_POST["role"];
 
 
 
-// remove unwanted characters
+
 
 $full_name = trim($full_name);
 $full_name = stripslashes($full_name);

@@ -29,7 +29,7 @@ unset($_SESSION["role"]);
     <head>
         <title>Registration</title>
          <script src="../Controller/checkUsername.js"></script>
-         <script src="reg.js"></script>
+         <script src="../Controller/reg.js"></script>
 
     </head>
 

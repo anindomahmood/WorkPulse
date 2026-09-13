@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $username = $_SESSION["loggedInUsername"] ?? "";
 $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
 
@@ -20,6 +18,10 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
 
 
     <html>
+        <head>
+             <link rel="stylesheet" href="../Mview/style.css">
+             
+        </head>
 
         <body>
 
@@ -36,11 +38,6 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
 
                     </div>
 
-                    <div class="notification-section">
-
-                        <a href="">Notification</a>
-
-                    </div>
 
                 </header>
 
@@ -50,7 +47,7 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
                     <div class="profile-section">
 
 
-                        <img src="" class="profile-image"/>
+                        <img src="../Image/user.png" class="profile-image"/>
 
                         <p>@<?php echo $usernameFromCookie;?></p>
 
@@ -60,7 +57,7 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
                     <ul>
 
                         <li>
-                            <a href="">Dashboard</a>
+                            <a href="../Mcontroller/DashboardController.php">Dashboard</a>
                         </li>
 
                         <li>
@@ -72,7 +69,7 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
                         </li>
 
                         <li>
-                            <a href="">Logout</a>
+                            <a href="../../Common/Controller/LogoutController.php">Logout</a>
                         </li>
 
                     </ul>
@@ -84,62 +81,42 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
 
                     <div class="card-container">
 
-                        <div class="dashboard-card">
-
-                            <h3>Total Employees</h3>
-
-                            <p>0</p>
-
-                        </div>
 
                         <div class="dashboard-card">
 
                             <h3>All Tasks</h3>
 
-                            <p>0</p>
+                            <p><?php echo $totalTasks; ?></p>
 
                         </div>
 
                         <div class="dashboard-card">
 
                             <h3>Overdue Tasks</h3>
-                            <p>0</p>
+                            <p><?php echo $overdueTasks; ?></p>
 
                         </div>
 
-                        <div class="dashboard-card">
-
-                            <h3>No Deadline</h3>
-
-                            <p>0</p>
-
-                        </div>
 
                         <div class="dashboard-card">
 
                             <h3>Due Today</h3>
-                            <p>0</p>
+                            <p><?php echo $dueTodayTasks; ?></p>
                         </div>
 
-                        <div class="dashboard-card">
-
-                            <h3>Notifications</h3>
-                            <p>0</p>
-
-                        </div>
 
                         <div class="dashboard-card">
 
                             <h3> Pending</h3>
 
-                            <p>0</p>
+                            <p><?php echo $pendingTasks; ?></p>
                         </div>
 
                         <div class="dashboard-card">
 
                             <h3>In Progress</h3>
 
-                            <p>0</p>
+                            <p><?php echo $inProgressTasks; ?></p>
 
                         </div>
 
@@ -147,7 +124,7 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
 
                         <h3>Completed</h3>
 
-                        <p>0</p>
+                        <p><?php echo $completedTasks; ?></p>
 
                         </div>
 

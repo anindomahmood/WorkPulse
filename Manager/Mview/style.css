@@ -1,0 +1,423 @@
+body
+{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8ee;
+}
+
+
+/* Main Container */
+
+.dashboard-container
+{
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* Header */
+
+.top-header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    height: 70px;
+
+    background-color: #252936;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    box-sizing: border-box;
+}
+
+
+.logo-section h2
+{
+    margin: 0;
+}
+
+
+.logo-section h2
+{
+    color: white;
+}
+
+
+/* Sidebar */
+
+.sidebar
+{
+    width: 250px;
+
+    background-color: #252936;
+
+    color: white;
+
+    position: fixed;
+
+    top: 70px;
+
+    bottom: 0;
+
+    left: 0;
+
+    padding-top: 20px;
+}
+
+
+
+.profile-section
+{
+    text-align: center;
+
+    padding: 20px;
+}
+
+
+.profile-image
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+.profile-section p
+{
+    color: white;
+
+    font-size: 18px;
+
+}
+
+
+
+/* Sidebar Menu */
+
+.sidebar ul
+{
+    list-style: none;
+
+    padding: 0;
+
+}
+
+
+.sidebar ul li
+{
+    padding: 15px 25px;
+}
+
+
+
+.sidebar ul li a
+{
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+
+
+.sidebar ul li:hover
+{
+    background-color: #187db3;
+}
+
+
+
+/* Main Content */
+
+.main-content
+{
+    margin-left: 250px;
+
+    margin-top: 70px;
+
+    padding: 40px;
+
+    width: calc(100% - 250px);
+
+}
+
+
+/* Dashboard Cards */
+
+.card-container
+{
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+
+.dashboard-card
+{
+    background-color: #252936;
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+}
+
+
+
+.dashboard-card h3
+{
+    margin-bottom: 15px;
+
+    font-size: 20px;
+}
+
+
+
+.dashboard-card p
+{
+    color: white;
+
+    font-size: 30px;
+
+    margin: 0;
+}
+
+
+
+/* Task Form */
+
+.task-form
+{
+    width: 700px;
+
+    margin: 20px auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+}
+
+
+
+.task-fieldset
+{
+    border: 1px solid #ddd;
+
+    padding: 20px;
+
+}
+
+
+
+.form-title
+{
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+
+.task-table
+{
+    width: 100%;
+}
+
+
+
+.task-table td
+{
+    padding: 10px;
+}
+
+
+
+.label
+{
+    font-weight: bold;
+
+    width: 200px;
+}
+
+
+
+.input-field
+{
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+}
+
+
+
+textarea.input-field
+{
+    height: 100px;
+
+    resize: none;
+}
+
+
+
+/* Buttons */
+
+.submit-button
+{
+    background-color: #187db3;
+
+    color: white;
+
+    padding: 10px 25px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+
+
+.submit-button:hover
+{
+    background-color: #135cb6;
+}
+
+
+
+/* Error */
+
+.error
+{
+    color: red;
+
+    font-size: 12px;
+
+    margin: 0;
+}
+
+
+
+/* Task List */
+
+.task-container
+{
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+}
+
+
+
+.page-title
+{
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+
+.task-table th
+{
+    background-color: #286bb8;
+
+    color: white;
+
+    padding: 12px;
+
+}
+
+
+
+.task-table td
+{
+    text-align: center;
+
+    padding: 10px;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+
+/* Action Buttons */
+
+.edit-button
+{
+    background-color: #187db3;
+
+    color: white;
+
+    padding: 6px 15px;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+}
+
+
+
+.delete-button
+{
+    background-color: #d9534f;
+
+    color: white;
+
+    padding: 6px 15px;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+}
+
+
+
+.edit-button:hover
+{
+    background-color: #135cb6;
+}
+
+
+
+.delete-button:hover
+{
+    background-color: #b52b27;
+}
+

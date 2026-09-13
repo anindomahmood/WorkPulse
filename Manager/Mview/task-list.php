@@ -13,6 +13,7 @@ $tasks = $_SESSION["managerTasks"] ?? [];
     <head>
 
         <title>Task List</title>
+        <link rel="stylesheet" href="style.css">
 
     </head>
 

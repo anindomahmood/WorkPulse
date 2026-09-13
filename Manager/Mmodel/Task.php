@@ -48,6 +48,53 @@ class Task
         ]);
 
 
+
+        if($result)
+        {
+
+            $task_id = $conn->lastInsertId();
+
+
+
+            $sql = "SELECT title FROM tasks 
+                    WHERE task_id=?";
+
+
+            $stmt = $conn->prepare($sql);
+
+
+            $stmt->execute([
+                $task_id
+            ]);
+
+
+            $task = $stmt->fetch();
+
+
+
+            $message = "New task assigned: " . $task["title"];
+
+
+
+            $sql = "INSERT INTO notifications
+                    (message, recipient_id, type)
+                    VALUES
+                    (?, ?, ?)";
+
+
+            $stmt = $conn->prepare($sql);
+
+
+            $stmt->execute([
+                $message,
+                $assigned_to,
+                "New Task Assigned"
+            ]);
+
+        }
+
+
+
         return $result;
 
     }

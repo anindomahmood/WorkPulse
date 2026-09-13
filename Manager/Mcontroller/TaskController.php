@@ -72,10 +72,18 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit")
     );
 
 
+    $teamLeaders = $task->getTeamLeaders($conn);
+
+
     $_SESSION["editTask"] = $taskData;
 
 
+    $_SESSION["teamLeaders"] = $teamLeaders;
+
+
     header("Location: ../Mview/edit-task.php");
+
+    exit;
 
 }
 
@@ -118,10 +126,61 @@ if(isset($_POST["update"]))
 
     $task_id = $_POST["task_id"];
 
-    $title = $_POST["title"];
-    $description = $_POST["description"];
+
+    $title = trim($_POST["title"]);
+
+    $description = trim($_POST["description"]);
+
     $assigned_to = $_POST["assigned_to"];
+
     $due_date = $_POST["due_date"];
+
+
+
+    $hasError = false;
+
+
+
+    if(!$title)
+    {
+        $_SESSION["titleError"] = "Task title is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$description)
+    {
+        $_SESSION["descriptionError"] = "Description is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$assigned_to)
+    {
+        $_SESSION["assignedError"] = "Please select team leader";
+        $hasError = true;
+    }
+
+
+
+    if(!$due_date)
+    {
+        $_SESSION["dueDateError"] = "Due date is required";
+        $hasError = true;
+    }
+
+
+
+    if($hasError)
+    {
+
+        header("Location: ../Mcontroller/TaskController.php?action=edit&id=".$task_id);
+        exit;
+
+    }
+
 
 
     $manager_id = $_SESSION["user"]["user_id"];
@@ -139,30 +198,81 @@ if(isset($_POST["update"]))
     );
 
 
-    if($result)
+
+   if($result)
     {
 
         header("Location: TaskController.php?action=list");
 
-    }
+        exit;
 
+    }
     else
     {
 
         echo "Update failed";
 
     }
-
+    
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST")
+if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["update"]))
 {
 
 
-    $title = $_POST["title"];
-    $description = $_POST["description"];
+    $title = trim($_POST["title"]);
+
+    $description = trim($_POST["description"]);
+
     $assigned_to = $_POST["assigned_to"];
+
     $due_date = $_POST["due_date"];
+
+
+
+    $hasError = false;
+
+
+
+    if(!$title)
+    {
+        $_SESSION["titleError"] = "Task title is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$description)
+    {
+        $_SESSION["descriptionError"] = "Description is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$assigned_to)
+    {
+        $_SESSION["assignedError"] = "Please select team leader";
+        $hasError = true;
+    }
+
+
+
+    if(!$due_date)
+    {
+        $_SESSION["dueDateError"] = "Due date is required";
+        $hasError = true;
+    }
+
+
+
+    if($hasError)
+    {
+
+        header("Location: ../Mview/create-task.php");
+        exit;
+
+    }
 
 
 

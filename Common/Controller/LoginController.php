@@ -13,7 +13,6 @@ $password = $_POST["password"];
 
 $_SESSION["username"] = $username;
 
-// remove extra spaces and unwanted characters
 
 $username = trim($username);
 $username = stripslashes($username);
@@ -105,7 +104,7 @@ else
         else if($result["role"] == "manager")
         {
 
-            header("Location: ../../Manager/Mview/dashboard.php");
+           header("Location: ../../Manager/Mcontroller/DashboardController.php");
 
         }
 

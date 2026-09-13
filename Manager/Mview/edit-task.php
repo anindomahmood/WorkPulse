@@ -8,15 +8,41 @@ $task = $_SESSION["editTask"] ?? [];
 $teamLeaders = $_SESSION["teamLeaders"] ?? [];
 
 
+
+
+$titleError = $_SESSION["titleError"] ?? "";
+
+$descriptionError = $_SESSION["descriptionError"] ?? "";
+
+$assignedError = $_SESSION["assignedError"] ?? "";
+
+$dueDateError = $_SESSION["dueDateError"] ?? "";
+
+
+
+
+unset($_SESSION["titleError"]);
+
+unset($_SESSION["descriptionError"]);
+
+unset($_SESSION["assignedError"]);
+
+unset($_SESSION["dueDateError"]);
+
 ?>
 
 
 <html>
+    <head>
+        <script src="../Mcontroller/taskValidation.js"></script>
+
+         <link rel="stylesheet" href="style.css">
+    </head>
 
     <body>
 
 
-        <form class="task-form" action="../Mcontroller/TaskController.php" method="post">
+        <form class="task-form" action="../Mcontroller/TaskController.php" method="post" onsubmit="return validateEditTask()">
 
 
             <fieldset class="task-fieldset">
@@ -40,11 +66,19 @@ $teamLeaders = $_SESSION["teamLeaders"] ?? [];
                             <input 
                             type="text" 
                             name="title"
+                            id="task-title"
                             class="input-field"
                             value="<?php echo $task["title"]; ?>"
                             />
                         </td>
+                        <td>
 
+                            <p class="error">
+                                <?php echo $titleError; ?>
+                            </p>
+
+                        </td>
+                        <td><p class="error" id="titleError"></p></td>
                     </tr>
 
 
@@ -57,10 +91,18 @@ $teamLeaders = $_SESSION["teamLeaders"] ?? [];
                         <td>
                             <textarea 
                             name="description"
+                            id="task-description"
                             class="input-field"
                             ><?php echo $task["description"]; ?></textarea>
                         </td>
+                        <td>
 
+                            <p class="error">
+                                <?php echo $descriptionError; ?>
+                            </p>
+
+                        </td>
+                        <td><p class="error" id="descriptionError"></p></td>
                     </tr>
 
 
@@ -74,11 +116,19 @@ $teamLeaders = $_SESSION["teamLeaders"] ?? [];
                             <input 
                             type="date"
                             name="due_date"
+                            id="task-date"
                             class="input-field"
                             value="<?php echo $task["due_date"]; ?>"
                             />
                         </td>
+                        <td>
 
+                            <p class="error">
+                                <?php echo $dueDateError; ?>
+                            </p>
+
+                        </td>
+                        <td><p class="error" id="dueDateError"></p></td>
                     </tr>
 
 
@@ -94,6 +144,7 @@ $teamLeaders = $_SESSION["teamLeaders"] ?? [];
 
                         <select 
                         name="assigned_to"
+                        id="team-leader"
                         class="input-field"
                         >
 
@@ -138,7 +189,14 @@ $teamLeaders = $_SESSION["teamLeaders"] ?? [];
 
 
                         </td>
+                        <td>
 
+                            <p class="error">
+                                <?php echo $assignedError; ?>
+                            </p>
+
+                        </td>
+                        <td><p class="error" id="assignedError"></p></td>
                     </tr>
 
 
