@@ -13,6 +13,7 @@ $password = $_POST["password"];
 
 $_SESSION["username"] = $username;
 
+// remove extra spaces and unwanted characters
 
 $username = trim($username);
 $username = stripslashes($username);
@@ -90,6 +91,12 @@ else
 
         $_SESSION["user"] = $result;
 
+        // used by Admin/View pages ($_SESSION['role'] / $_SESSION['id'] / $_SESSION['username'])
+        $_SESSION["role"] = $result["role"];
+        $_SESSION["id"] = $result["user_id"];
+        $_SESSION["username"] = $result["username"];
+        $_SESSION["full_name"] = $result["full_name"];
+
 
 
 
@@ -104,7 +111,7 @@ else
         else if($result["role"] == "manager")
         {
 
-           header("Location: ../../Manager/Mcontroller/DashboardController.php");
+            header("Location: ../../Manager/Mcontroller/DashboardController.php");
 
         }
 
@@ -139,6 +146,5 @@ else
 
 
 }
-
 
 ?>

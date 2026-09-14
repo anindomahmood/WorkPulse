@@ -28,13 +28,15 @@ unset($_SESSION["role"]);
 
     <head>
         <title>Registration</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
          <script src="../Controller/checkUsername.js"></script>
-         <script src="../Controller/reg.js"></script>
+         <script src="reg.js"></script>
 
     </head>
 
 
-    <body>
+    <body class="login-body">
 
 
         <form 

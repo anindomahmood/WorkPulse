@@ -8,7 +8,9 @@ function checkUsername() {
       document.getElementById("response").innerHTML = this.status;
     }
   };
-  xhttp.open("POST", "HandleAjax.php", true);
+  // NOTE: this resolves relative to the PAGE url (View/registration.php),
+  // not this script's own src path, so it must point into ../Controller/
+  xhttp.open("POST", "../Controller/HandleAjax.php", true);
   xhttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   xhttp.send("username=" + username);
 }

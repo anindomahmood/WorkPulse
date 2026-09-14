@@ -13,7 +13,7 @@ $role = $_POST["role"];
 
 
 
-
+// remove unwanted characters
 
 $full_name = trim($full_name);
 $full_name = stripslashes($full_name);
@@ -117,6 +117,17 @@ else
     $user = new User();
 
 
+    // extra safety: block duplicate usernames even if the AJAX check was bypassed
+    $existing = $user->checkExistingUserByUsername($conn, $username);
+
+    if($existing)
+    {
+        $_SESSION["usernameError"] = "Username already taken";
+        header("Location: ../View/registration.php");
+        exit();
+    }
+
+
     $result = $user->register(
         $conn,
         $full_name,
@@ -142,6 +153,5 @@ else
     }
 
 }
-
 
 ?>
