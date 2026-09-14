@@ -188,8 +188,54 @@ class Task
     }
 
 
+    function getProfile($conn, $user_id)
+{
+
+    $sql = "SELECT * FROM users
+            WHERE user_id=?";
 
 
+    $stmt = $conn->prepare($sql);
+
+
+    $stmt->execute([
+        $user_id
+    ]);
+
+
+    $profile = $stmt->fetch();
+
+
+    return $profile;
+
+}
+
+
+
+
+
+function updateProfile($conn, $full_name, $username, $password, $user_id)
+{
+
+    $sql = "UPDATE users
+            SET full_name=?,
+                username=?,
+                password=?
+            WHERE user_id=?";
+
+
+    $stmt = $conn->prepare($sql);
+
+
+        $result = $stmt->execute([
+                    $full_name,
+                    $username,
+                    $password,
+                    $user_id]);
+
+
+        return $result;
+}
 
     function deleteTask($conn, $task_id, $manager_id)
     {

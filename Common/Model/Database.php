@@ -9,7 +9,7 @@ class Database
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "task_management";
+        $dbname = "taskflow_db";
 
 
         try

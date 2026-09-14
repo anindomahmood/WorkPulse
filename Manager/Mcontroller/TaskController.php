@@ -2,6 +2,9 @@
 
 session_start();
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 
 include "../../Common/Model/Database.php";
 include "../Mmodel/Task.php";
@@ -82,6 +85,27 @@ if(isset($_GET["action"]) && $_GET["action"] == "edit")
 
 
     header("Location: ../Mview/edit-task.php");
+
+    exit;
+
+}
+
+if(isset($_GET["action"]) && $_GET["action"] == "profile")
+{
+
+    $user_id = $_SESSION["user"]["user_id"];
+
+
+    $profile = $task->getProfile(
+        $conn,
+        $user_id
+    );
+
+
+    $_SESSION["profile"] = $profile;
+
+
+    header("Location: ../Mview/edit-profile.php");
 
     exit;
 
@@ -216,7 +240,7 @@ if(isset($_POST["update"]))
     
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["update"]))
+if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["update"]) && !isset($_POST["updateProfile"]))
 {
 
 
@@ -308,5 +332,93 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST["update"]))
 
 }
 
+if(isset($_POST["updateProfile"]))
+{
+
+    $full_name = trim($_POST["full_name"]);
+
+    $username = trim($_POST["username"]);
+
+    $password = trim($_POST["password"]);
+
+
+
+    $hasError = false;
+
+
+
+    if(!$full_name)
+    {
+        $_SESSION["fullNameError"] = "Full Name is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$username)
+    {
+        $_SESSION["usernameError"] = "Username is required";
+        $hasError = true;
+    }
+
+
+
+    if(!$password)
+    {
+        $_SESSION["passwordError"] = "Password is required";
+        $hasError = true;
+    }
+
+
+
+    if($hasError)
+    {
+
+        header("Location: ../Mview/edit-profile.php");
+
+        exit;
+
+    }
+
+
+
+    $user_id = $_SESSION["user"]["user_id"];
+
+
+
+    $result = $task->updateProfile(
+        $conn,
+        $full_name,
+        $username,
+        $password,
+        $user_id
+    );
+
+    
+
+    if($result)
+    {
+
+        $_SESSION["user"]["full_name"] = $full_name;
+
+        $_SESSION["user"]["username"] = $username;
+
+
+        header("Location: DashboardController.php");
+
+        exit;
+
+    }
+
+
+    else
+    {
+
+        echo "Profile update failed";
+
+    }
+
+
+}
 
 ?>

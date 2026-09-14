@@ -67,6 +67,9 @@ $usernameFromCookie = $_COOKIE["username"] ?? "";
                         <li>
                             <a href="../Mcontroller/TaskController.php?action=list">All Tasks</a>
                         </li>
+                        <li>
+                            <a href="../Mcontroller/TaskController.php?action=profile">Profile</a>
+                        </li>
 
                         <li>
                             <a href="../../Common/Controller/LogoutController.php">Logout</a>
